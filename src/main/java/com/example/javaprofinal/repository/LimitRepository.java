@@ -11,13 +11,7 @@ import org.springframework.stereotype.Repository;
 public interface LimitRepository extends JpaRepository<Limit, Long> {
 
     @Modifying
-    @Query("UPDATE Limit SET dailyLimit = :dailyLimit")
+    @Query("UPDATE Limit lmt SET lmt.dailyLimit = :dailyLimit")
     void resetLimits(@Param("dailyLimit") Integer dailyLimit);
-
-    @Modifying
-    @Query("UPDATE Limit SET dailyLimit = :dailyLimit WHERE clientId = :clientId")
-    void resetClientLimit(
-            @Param("clientId") Long clientId,
-            @Param("dailyLimit") Integer dailyLimit);
 
 }
